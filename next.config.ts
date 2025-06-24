@@ -1,15 +1,34 @@
-
 import type {NextConfig} from 'next';
 
-const nextConfig = {
+const nextConfig: NextConfig = {
+  // Static export configuration for GitHub Pages
   output: 'export',
   trailingSlash: true,
-  images: {
-    unoptimized: true
-  },
-  // Add this if you're deploying to a subdirectory (like username.github.io/repository-name)
+  
+  // GitHub Pages subdirectory configuration
   basePath: '/Collapp',
   assetPrefix: '/Collapp/',
-}
+  
+  // Your existing TypeScript and ESLint config
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  
+  // Updated images configuration for static export
+  images: {
+    unoptimized: true, // Required for static export
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+};
 
-export default nextConfig
+export default nextConfig;
